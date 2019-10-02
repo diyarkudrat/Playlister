@@ -3,12 +3,9 @@ from pymongo import MongoClient
 from bson.objectid import ObjectId
 import os
 
-client = MongoClient()
-db = client.Playlister
-playlists = db.playlists
 
+host = os.environ.get('MONGODB_URI', 'mongodb://localhost:27017/Playlister')
 client = MongoClient(host=f'{host}?retryWrites=false')
-client = MongoClient(host=host)
 db = client.get_default_database()
 playlists = db.playlists
 
